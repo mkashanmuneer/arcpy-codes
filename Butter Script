@@ -1,0 +1,13 @@
+import arcpy
+
+# 1. Set the workspace (where your data is)
+arcpy.env.workspace = "C:/Data/Folder"
+
+# 2. Get a list of all Feature Classes (Shapefiles/Layers)
+shp_list = arcpy.ListFeatureClasses()
+
+# 3. The Loop (This is where the magic happens)
+for shp in shp_list:
+    output_name = shp + "_100m_buffer"
+    arcpy.analysis.Buffer(shp, output_name, "100 Meters")
+    print(f"Finished buffering {shp}!")
